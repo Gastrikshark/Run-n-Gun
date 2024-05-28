@@ -1086,6 +1086,8 @@ GameObject:
   - component: {fileID: 2135973553}
   - component: {fileID: 2135973552}
   - component: {fileID: 2135973556}
+  - component: {fileID: 2135973557}
+  - component: {fileID: 2135973558}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1236,11 +1238,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  IsDashing: 0
-  jumpheight: 150
-  bulletamount: 1
-  bulletspeed: 5
-  rb: {fileID: 2135973553}
+  jumpHeight: 300
+  gravityScale: 5
+  bulletAmount: 1
+  bulletSpeed: 5
+  groundChecker: {fileID: 2135973557}
+--- !u!114 &2135973557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135973551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e988b48b04d7227459fac5c944a31c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsGround: 0
+--- !u!114 &2135973558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135973551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f0d9815a31d06479f6bef6e7cf9035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 50
+  dashDuration: 0.2
+  dashCooldown: 0.3
+  dashForce: 300
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
