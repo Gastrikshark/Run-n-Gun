@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     float bulletspeed = 5;
 
     Enemy enemy;
+    ShootingAction shooting;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +25,11 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"));
         {
-            Destroy(gameObject);
+            //if (other.GetComponent<ShootingAction>())
+            //   other.GetComponent<ShootingAction>().Action();
+            
         }
 
-        //if (other.GetComponent<ShootingAction>()) ;
-        //if (other.GetComponent<ShootingAction>().Action()) ;
+        Destroy(gameObject);
     }
 }

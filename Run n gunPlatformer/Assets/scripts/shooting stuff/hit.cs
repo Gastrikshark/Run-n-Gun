@@ -25,7 +25,7 @@ public class hit : MonoBehaviour
         if (!canShoot)
             return;
 
-        GameObject si = Instantiate(Bullet, ShootingPoint);
-        si.transform.parent = null;
+        //GameObject si = Instantiate(Bullet, ShootingPoint);
+        //si.transform.parent = null;
     }
 }
