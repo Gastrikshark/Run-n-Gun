@@ -5,9 +5,10 @@ public class Movement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] public float speed = 15;
     [SerializeField] private float jumpHeight = 225;
-    [SerializeField] private float gravityScale = 10;
+    
 
     [Header("Shooting Settings")]
+    GameObject Bullet;  
     [SerializeField] private int bulletAmount = 1;
     [SerializeField] private float bulletSpeed = 5;
 
@@ -26,8 +27,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         UpdateMovement();
-        CheckJump();
-        ApplyGravity();
+        CheckJump();     
     }
 
     private void UpdateMovement()
@@ -45,11 +45,11 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void ApplyGravity()
+    private void Shooting()
     {
-        if (rb.velocity.y > 0)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            rb.gravityScale = gravityScale;
+            rb.AddForce(Vector2.right * jumpHeight, ForceMode2D.Impulse);
         }
     }
 }
