@@ -17,9 +17,9 @@ public class aiming: MonoBehaviour
 
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        GameObject direction = new Vector2(mousePosition.z - transform.position.x, transform.position.y);
+        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, transform.position.y);
 
-        transform.up = direction;
+        transform.right = direction;
     }
 }
 
