@@ -3,20 +3,18 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] public float speed = 15;
-    [SerializeField] private float jumpHeight = 225;
-    
+    public float speed = 15; // Made public for accessibility
 
-    [Header("Shooting Settings")]
-    GameObject Bullet;  
-    [SerializeField] private int bulletAmount = 1;
-    [SerializeField] private float bulletSpeed = 5;
+    [SerializeField] private float jumpHeight = 225;
+    [SerializeField] private float gravityScale = 10;
 
     [Header("Components")]
     [SerializeField] private GroundChecker groundChecker;
     private Dash dash;
 
     public Rigidbody2D rb { get; private set; }
+
+    private bool facingRight = true;
 
     private void Start()
     {
@@ -27,14 +25,24 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         UpdateMovement();
-        CheckJump();     
+        CheckJump();
     }
 
     private void UpdateMovement()
     {
         Vector2 velocity = rb.velocity;
-        velocity.x = Input.GetAxis("Horizontal") * speed;
+        float moveInput = Input.GetAxis("Horizontal");
+        velocity.x = moveInput * speed;
         rb.velocity = velocity;
+
+        if (moveInput > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (moveInput < 0 && facingRight)
+        {
+            Flip();
+        }
     }
 
     private void CheckJump()
@@ -45,12 +53,17 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void Shooting()
+    private void Flip()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            rb.AddForce(Vector2.right * jumpHeight, ForceMode2D.Impulse);
-        }
+        facingRight = !facingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
+
+        // Flip the fire point direction if you have one
+        Transform firePoint = GetComponent<Shooting>().firePoint;
+        Vector3 firePointScaler = firePoint.localScale;
+        firePointScaler.x *= -1;
+        firePoint.localScale = firePointScaler;
     }
 }
-
