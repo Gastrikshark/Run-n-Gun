@@ -80,9 +80,8 @@ public class Movement : MonoBehaviour
         if (gun != null)
         {
             Vector3 gunScale = gun.localScale;
-            gunScale.x *= -1;
-            gun.localScale = gunScale;
+            //gunScale.x *= -1;
+            //gun.localScale = gunScale;
         }
     }
-
 }

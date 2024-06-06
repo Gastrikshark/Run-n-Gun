@@ -1,27 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float damage = 5;
-    public float bulletspeed = 5;
+    public float damage = 10f;
     public float lifeTime = 2f;
 
-    Enemy enemy;
-    // Start is called before the first frame update
     void Start()
     {
         Destroy(gameObject, lifeTime);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Enemy"));
+        if (collision.CompareTag("Player"))
         {
-            //enemy.health -= damage;
+            Player player = collision.GetComponent<Player>();
+            if (player != null)
+            {
+                Debug.Log("Bullet hit the player. Dealing " + damage + " damage.");
+                player.TakeDamage(damage);
+                Destroy(gameObject);
+            }
         }
-
-        Destroy(gameObject);
+        else if (collision.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                Debug.Log("Bullet hit the enemy. Dealing " + damage + " damage.");
+                enemy.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
