@@ -1,25 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class aiming: MonoBehaviour
+public class Aiming : MonoBehaviour
 {
-
-
-    void Start()
+    void Update()
     {
-       
-    }
-
-    private void Update()
-    {
+        // kijkt naar de muis pozietzi en onthoud waar die is
         Vector3 mousePosition = Input.mousePosition;
 
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+         // zorgt er voor dat de muis z posietzie en die van de camera het zelfde zijn
+        mousePosition.z = transform.position.z - Camera.main.transform.position.z;
 
-        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, transform.position.y);
+        // zet de muis positzie van het scherm om naar cordienaten van de wereld
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        transform.right = direction;
+        // Calculate the direction from the object to the mouse position
+        Vector2 direction = worldMousePosition - transform.position;
+
+        // bekijkt de rotatie van de gun
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // hier gebeurt de rotatie door middle van de Euler
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 }
 

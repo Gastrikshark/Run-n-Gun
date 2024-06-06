@@ -21,16 +21,15 @@ public class Shooting : MonoBehaviour
 
     private void Shoot()
     {
-        // Instantiate the bullet at the fire point
+        // Creart de kogel en waar die geshoten moet worden
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-        // Get the Rigidbody2D component of the bullet and set its velocity
+        // pakt de Rigidbody2D component van de kogel en onthoudt zijn snelheid
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            // Determine the direction based on the firePoint's local scale
-            Vector2 bulletDirection = firePoint.right * Mathf.Sign(firePoint.localScale.z);
-            rb.velocity = bulletDirection * bulletSpeed;
+            // geeft de kogel zijn snelhijd
+            rb.velocity = firePoint.right * bulletSpeed;
         }
     }
 }

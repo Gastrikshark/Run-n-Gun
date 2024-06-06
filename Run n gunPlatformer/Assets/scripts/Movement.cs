@@ -3,10 +3,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float speed = 15; // Made public for accessibility
-
-    [SerializeField] private float jumpHeight = 225;
-    [SerializeField] private float gravityScale = 10;
+    public float speed = 15;
+    public float jumpHeight = 225;
+    public float gravityScale = 10;
 
     [Header("Components")]
     [SerializeField] private GroundChecker groundChecker;
@@ -15,6 +14,7 @@ public class Movement : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
 
     private bool facingRight = true;
+    private float moveInput;
 
     private void Start()
     {
@@ -24,46 +24,65 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        UpdateMovement();
-        CheckJump();
+        {
+            Vector2 vel = rb.velocity;
+            vel.x = moveInput * speed;
+            rb.velocity = vel;
+
+            if (moveInput > 0 && !facingRight)
+            {
+                Flip();
+            }
+            else if (moveInput < 0 && facingRight)
+            {
+                Flip();
+            }
+
+            if (rb.velocity.y > 0)
+            {
+                vel.y = gravityScale;
+            }
+        }
     }
 
-    private void UpdateMovement()
+    public void SetMovementInput(float input)
     {
-        Vector2 velocity = rb.velocity;
-        float moveInput = Input.GetAxis("Horizontal");
-        velocity.x = moveInput * speed;
-        rb.velocity = velocity;
-
-        if (moveInput > 0 && !facingRight)
-        {
-            Flip();
-        }
-        else if (moveInput < 0 && facingRight)
-        {
-            Flip();
-        }
+        moveInput = input;
     }
 
-    private void CheckJump()
+
+    public void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.W) && groundChecker.IsGround)
+        if (groundChecker.IsGround)
         {
             rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
         }
     }
 
+    public void Dash()
+    {
+        if (dash != null)
+        {
+            dash.PerformDash();
+        }
+    }
+
     private void Flip()
     {
+        // zorgt er voor dat de player naar achter kan kijken
         facingRight = !facingRight;
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
 
-        // Flip the fire point direction if you have one
-        Transform firePoint = GetComponent<Shooting>().firePoint;
-        Vector3 firePointScaler = firePoint.localScale;
-        firePointScaler.x *= -1;
-        firePoint.localScale = firePointScaler;
+        // Flipt de gun op de goede pozietzie
+        Transform gun = transform.Find("Gun");
+        if (gun != null)
+        {
+            Vector3 gunScale = gun.localScale;
+            gunScale.x *= -1;
+            gun.localScale = gunScale;
+        }
     }
+
 }

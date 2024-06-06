@@ -15,12 +15,6 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(Vector2.right* bulletspeed *Time.deltaTime);
-    }
-
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Enemy"));
