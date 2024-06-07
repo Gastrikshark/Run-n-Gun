@@ -135,10 +135,9 @@ MonoBehaviour:
   health: 25
   bulletPrefab: {fileID: 756483929842457614, guid: 84a67f4880d97a6499d8ceafc63e4bf9, type: 3}
   firePoint: {fileID: 4290310831474954813, guid: 84a67f4880d97a6499d8ceafc63e4bf9, type: 3}
-  bulletSpeed: 10
+  bulletSpeed: 15
   fireRate: 1
-  speed: 2
-  moveDistance: 5
+  moveSpeed: 2
 --- !u!50 &5086078281061346551
 Rigidbody2D:
   serializedVersion: 4

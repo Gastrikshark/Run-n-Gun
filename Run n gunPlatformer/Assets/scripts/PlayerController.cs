@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movement movement;
-
     void Start()
     {
         movement = GetComponent<Movement>();

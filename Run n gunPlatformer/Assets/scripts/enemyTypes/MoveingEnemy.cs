@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovingEnemy : Enemy
 {
-    public float moveSpeed = 2f; // Speed of the enemy movement
+    public float moveSpeed = 2f; 
     private bool movingRight = true;
 
     private void Update()
@@ -18,7 +18,6 @@ public class MovingEnemy : Enemy
         Vector3 movement = (movingRight ? Vector3.right : Vector3.left) * moveSpeed * Time.deltaTime;
         transform.Translate(movement);
     }
-
     private void Flip()
     {
         // Flip the enemy's sprite
