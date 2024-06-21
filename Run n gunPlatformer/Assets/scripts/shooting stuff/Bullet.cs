@@ -10,6 +10,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
+    private void Update()
+    {
+
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -38,3 +43,4 @@ public class Bullet : MonoBehaviour
         }
     }
 }
+

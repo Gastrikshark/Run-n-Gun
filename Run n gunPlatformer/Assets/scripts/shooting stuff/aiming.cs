@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Aiming : MonoBehaviour
 {
+    private Transform playerTransform;
+    public GameObject bulletPrefab; // Assign your bullet prefab in the Inspector
+    public float bulletSpeed = 10f; // Adjust the bullet speed as needed
     void Update()
     {
         // kijkt naar de muis pozietzi en onthoud waar die is

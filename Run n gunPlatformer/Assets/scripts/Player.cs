@@ -4,7 +4,6 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     public float health = 100f;
-    Bullet Bullet;
     void Awake()
     {
        
