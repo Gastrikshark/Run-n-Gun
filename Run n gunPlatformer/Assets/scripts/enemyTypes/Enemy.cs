@@ -11,8 +11,15 @@ public class Enemy : MonoBehaviour
     public float bulletSpeed = 10f;
     public float fireRate = 1f;
 
+    [Header("Pickup Settings")]
+    public GameObject healthPickupPrefab;
+    public GameObject smallHealthPickupPrefab;
+    public float healthPickupChance = 0.2f;
+    public float smallHealthPickupChance = 0.6f; 
+
     protected float nextFireTime = 0f;
     private Transform player;
+    Player playerCharacter;
 
     void Start()
     {
@@ -33,6 +40,7 @@ public class Enemy : MonoBehaviour
         {
             Shoot();
             nextFireTime = Time.time + fireRate;
+
         }
     }
 
@@ -46,7 +54,7 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            //dan pakt hij de snelhied van de Rigifbody2d plus ruimte tussen direction keer de bulletspeed
+            //dan pakt hij de snelhied van de Rigdbody2d plus ruimte tussen direction keer de bulletspeed
             rb.velocity = direction * bulletSpeed;
         }
     }
@@ -63,8 +71,24 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        // verwijderd het object as de funtie wordt aangeroepen
+        //het geeft de player coins en verwijderd de enemy as de funtie wordt aangeroepen  
+        int coinsToAdd = Random.Range(2, 6);
+        Player.instance.AddCoins(coinsToAdd);
+
+        //  spawned de health pickups gebaseerd op de kansen beschreven in de 2 floats van pickupsettings
+        float randomValue = Random.value;
+        if (randomValue < healthPickupChance)
+        {
+            Instantiate(healthPickupPrefab, transform.position, Quaternion.identity);
+        }
+        else if (randomValue < healthPickupChance + smallHealthPickupChance)
+        {
+            Instantiate(smallHealthPickupPrefab, transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
+
+
     }
 
     protected void Flip()

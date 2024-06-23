@@ -137,6 +137,10 @@ MonoBehaviour:
   firePoint: {fileID: 4290310831474954813, guid: 84a67f4880d97a6499d8ceafc63e4bf9, type: 3}
   bulletSpeed: 15
   fireRate: 1
+  healthPickupPrefab: {fileID: 6221583091333984184, guid: 8801b2d4c11839c4ebe5d81f26fe439e, type: 3}
+  smallHealthPickupPrefab: {fileID: 2885483298248333050, guid: fd389cb379ba76e4b931974eca915b63, type: 3}
+  healthPickupChance: 0.2
+  smallHealthPickupChance: 0.6
   moveSpeed: 2
 --- !u!50 &5086078281061346551
 Rigidbody2D:

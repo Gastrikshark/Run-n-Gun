@@ -6,7 +6,7 @@
             "id": "9800ff21-2a01-4a42-a4aa-75ad515dfb08",
             "actions": [
                 {
-                    "name": "moveing",
+                    "name": "moving",
                     "type": "PassThrough",
                     "id": "e11a841a-6eeb-44a3-937f-35e038cfa8cc",
                     "expectedControlType": "Vector2",
@@ -16,18 +16,18 @@
                 },
                 {
                     "name": "Dash",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "198f2d5d-78de-4037-8e85-502e83c3f373",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Key",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PauzeMenu",
-                    "type": "Button",
+                    "name": "PauseMenu",
+                    "type": "PassThrough",
                     "id": "7335ce6d-1dde-4e9e-ad4f-b003becadde4",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -41,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "moveing",
+                    "action": "moving",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -52,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "keybord",
-                    "action": "moveing",
+                    "action": "moving",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -63,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "keybord",
-                    "action": "moveing",
+                    "action": "moving",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -74,7 +74,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "keybord",
-                    "action": "moveing",
+                    "action": "moving",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -85,7 +85,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "keybord",
-                    "action": "moveing",
+                    "action": "moving",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -93,7 +93,7 @@
                     "name": "",
                     "id": "5f010a2d-c22e-46d3-8656-bc0387ca7a1a",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "keybord",
                     "action": "Dash",
@@ -103,11 +103,11 @@
                 {
                     "name": "",
                     "id": "e0505358-975b-49ff-8fe6-643ade6ef451",
-                    "path": "<Keyboard>/#(P)",
-                    "interactions": "",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "keybord",
-                    "action": "PauzeMenu",
+                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

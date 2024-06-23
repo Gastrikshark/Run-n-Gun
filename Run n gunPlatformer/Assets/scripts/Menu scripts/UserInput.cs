@@ -5,17 +5,13 @@ using UnityEngine.InputSystem;
 
 public class UserInput : MonoBehaviour
 {
-
     public static UserInput instance;
 
-    public Vector2 Moveing;
-
+    public Vector2 Moveing { get; private set; }
     public bool Dash { get; private set; }
-
     public bool MenuOpenClose { get; private set; }
 
     private PlayerInput _playerInput;
-
     private InputAction _Moveing;
     private InputAction _Dash;
     private InputAction _MenuOpenClose;
@@ -26,20 +22,31 @@ public class UserInput : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject); // Ensure only one instance exists
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject); // Optional: Persist between scenes
 
         _playerInput = GetComponent<PlayerInput>();
+        if (_playerInput == null)
+        {
+            Debug.LogError("PlayerInput component not found!");
+            return;
+        }
 
         SetUpActions();
     }
 
     private void SetUpActions()
     {
-        _Moveing = _playerInput.actions["Moveing"];
+        _Moveing = _playerInput.actions["Moving"];
         _Dash = _playerInput.actions["Dash"];
-        _MenuOpenClose = _playerInput.actions["PauzeMenu"];
+        //_MenuOpenClose = _playerInput.actions["PauzeMenu"];
     }
 
-    // Update is called once per frame
     private void Update()
     {
         UpdateMovements();
@@ -49,6 +56,6 @@ public class UserInput : MonoBehaviour
     {
         Moveing = _Moveing.ReadValue<Vector2>();
         Dash = _Dash.WasPressedThisFrame();
-        MenuOpenClose = _MenuOpenClose.WasPressedThisFrame();
+        //MenuOpenClose = _MenuOpenClose.WasPressedThisFrame();
     }
 }

@@ -64,10 +64,10 @@ public class Dash : MonoBehaviour
 
         dashTimer = dashDuration;
 
-        StartCoroutine(ResetMovementSpeed(originalSpeed, dashDuration)); //x
+        StartCoroutine(ResetMovementSpeed(originalSpeed, dashDuration)); 
     }
 
-    IEnumerator ResetMovementSpeed(float originalSpeed, float delay) //x
+    IEnumerator ResetMovementSpeed(float originalSpeed, float delay) 
     {
         yield return new WaitForSeconds(delay);
 
