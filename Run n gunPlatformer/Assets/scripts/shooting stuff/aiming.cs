@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Aiming : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public float bulletSpeed = 10f; 
     void Update()
     {
         // kijkt naar de muis pozietzi en onthoud waar die is

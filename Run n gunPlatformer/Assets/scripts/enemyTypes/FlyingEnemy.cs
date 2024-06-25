@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FlyingEnemy : Enemy
 {
-    public float moveSpeed = 2f; // Speed of the enemy movement
-    public Transform pointA; // Starting point
-    public Transform pointB; // Ending point
+    public float moveSpeed = 2f; 
+    public Transform pointA; 
+    public Transform pointB; 
     private bool movingToB = true;
 
     private void Update()
@@ -15,7 +15,7 @@ public class FlyingEnemy : Enemy
         HandleShooting();
     }
 
-
+    // onthoud 2 pozieties en gaat konstand heen en weer met die pozietzies
     private void Move()
     {
         Transform targetPoint = movingToB ? pointB : pointA;
@@ -28,6 +28,7 @@ public class FlyingEnemy : Enemy
         }
     }
 
+    // wacht totdat de nextFireTime van de ouder scipt enemy gebeurt en gaat dan pass de shoot funtie aanroepen
     private void HandleShooting()
     {
         if (Time.time >= nextFireTime)
@@ -36,13 +37,14 @@ public class FlyingEnemy : Enemy
             nextFireTime = Time.time + fireRate;
         }
     }
-
+    
     private void Shoot()
     {
+        // creart de bullet onhout de firepoint pozietzie en rotatie en vuurt hem af
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
-        {
+        {   // onthoud waar de player is en aimt daar en schiet daar heen
             Vector2 direction = (Player.instance.transform.position - firePoint.position).normalized;
             rb.velocity = direction * bulletSpeed;
         }

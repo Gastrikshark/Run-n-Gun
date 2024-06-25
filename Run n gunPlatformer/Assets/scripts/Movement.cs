@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private GroundChecker groundChecker;
     private Dash dash;
 
+    SoundManager audio;
+    
     public Rigidbody2D rb { get; private set; }
 
     public bool facingRight = true;
@@ -22,6 +24,7 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         dash = GetComponent<Dash>();
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
     }
 
     private void Update()
@@ -54,10 +57,12 @@ public class Movement : MonoBehaviour
 
     public void Jump()
     {
-        if (groundChecker.IsGround && !isJumping) // check if not already jumping
+        if (groundChecker.IsGround && !isJumping) 
         {
             rb.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
-            isJumping = true; // set flag to true
+            isJumping = true;
+            // hij speelt hier de sound effect af
+            audio.Playsoundeffect(audio.Jump);
         }
     }
 
@@ -65,7 +70,7 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isJumping = false; // reset flag when grounded
+            isJumping = false; 
         }
     }
 

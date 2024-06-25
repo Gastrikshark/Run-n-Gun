@@ -9,9 +9,9 @@ public class hurt : MonoBehaviour
     public float damageCooldownTime;
     private float currentDamageCooldownTime;
     void Update()
-    {
+    {// verlacht de currentDamageCooldownTime float
         if (currentDamageCooldownTime <= 0f)
-        {
+        {// halt schade bij de player af en reset de currentDamageCooldownTime
             player.health -= damage;
             currentDamageCooldownTime = damageCooldownTime;
             Debug.Log("Took damage");
@@ -19,7 +19,7 @@ public class hurt : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D collision)
-    {
+    {// als de player er instaat krijgt de player scade
         if (collision.CompareTag("Player"))
         {
             Player player = collision.GetComponent<Player>();

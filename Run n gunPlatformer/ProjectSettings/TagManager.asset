@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - TurnPoint
   - Gun
+  - Audio
   layers:
   - Default
   - TransparentFX

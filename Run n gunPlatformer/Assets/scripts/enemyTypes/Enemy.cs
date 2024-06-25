@@ -91,9 +91,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    protected void Flip()
+    protected virtual void Flip()
     {
-        // laat de enemy draien
+        // laat de enemy omdraien
         Vector3 scaler = transform.localScale;
         scaler.x *= -1;
         transform.localScale = scaler;
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
     }
 
     //dit roopt de flip funtie aan als de enemy in contact komt met een object met de tag"TurnPoint"
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("TurnPoint"))
         {

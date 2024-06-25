@@ -14,48 +14,39 @@ public class UserInput : MonoBehaviour
     private PlayerInput _playerInput;
     private InputAction _Moveing;
     private InputAction _Dash;
-    private InputAction _MenuOpenClose;
 
     private void Awake()
     {
+        // als de script niet bestaat maakt hij hem aan
         if (instance == null)
         {
             instance = this;
         }
         else
-        {
-            Destroy(gameObject); // Ensure only one instance exists
+        {// als er all eentje word hij verwoest
+            Destroy(gameObject); 
             return;
         }
-
-        DontDestroyOnLoad(gameObject); // Optional: Persist between scenes
-
-        _playerInput = GetComponent<PlayerInput>();
-        if (_playerInput == null)
-        {
-            Debug.LogError("PlayerInput component not found!");
-            return;
-        }
+        // dit geburt niet als het object niet null is
+        DontDestroyOnLoad(gameObject); 
 
         SetUpActions();
     }
 
     private void SetUpActions()
-    {
+    {// set de movement en dash gebaseerd op de input die de player heeft gekozen in de options menu 
         _Moveing = _playerInput.actions["Moving"];
         _Dash = _playerInput.actions["Dash"];
-        //_MenuOpenClose = _playerInput.actions["PauzeMenu"];
     }
 
     private void Update()
-    {
+    {// hier word die uitgevoord
         UpdateMovements();
     }
 
     private void UpdateMovements()
-    {
+    {// hier worden de inputs aangepast mocht de player ze willen veranderen
         Moveing = _Moveing.ReadValue<Vector2>();
         Dash = _Dash.WasPressedThisFrame();
-        //MenuOpenClose = _MenuOpenClose.WasPressedThisFrame();
     }
 }

@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // mabby need to change set the command here just in case
         float moveInput = Input.GetAxis("Horizontal");
         movement.SetMovementInput(moveInput);
 

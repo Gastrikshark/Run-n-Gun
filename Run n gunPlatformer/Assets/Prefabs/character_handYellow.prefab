@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2.5
   lifeTime: 2
+  collisionSound: {fileID: 8300000, guid: 93e67c1f32eb40c479308412ffafe097, type: 3}
 --- !u!50 &5276157558136005568
 Rigidbody2D:
   serializedVersion: 4
